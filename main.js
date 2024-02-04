@@ -94,3 +94,15 @@ let obstacles = [];
 let staggerFrames = 0;
 let score = 0;
 let level = 100;
+
+
+// detect arrow key pressed by player and perform relative task
+window.addEventListener("keydown", (ev) => {
+    if (ev.key === "ArrowUp") {
+        bugPosition--;
+        if (bugPosition < 0) bugPosition = wires.length-1;
+    } else if (ev.key === "ArrowDown") {
+        bugPosition++;
+        if (bugPosition == wires.length) bugPosition = 0;
+    }
+});
