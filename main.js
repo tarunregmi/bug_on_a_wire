@@ -131,6 +131,45 @@ function afterGameOver() {
 }
 
 
+function animate() {
+    ctx.clearRect(0, 0, cnvWidth, cnvHeight);
+
+    background.draw();
+    bug.draw(wires[bugPosition]);
+
+    obstacles.forEach((obstacle) => {
+        obstacle.draw();
+
+        // collision detection
+        if (obstacle.y === wires[bugPosition]) {
+            if (bug.x < obstacle.x + obstacle.width + collideErr && bug.x + bug.width - collideErr > obstacle.x) {
+                gameOver = true;
+                afterGameOver();
+            }
+        }
+    });
+
+    // remove obstacle that is out from canvas and increase score
+    obstacles = obstacles.filter(obstacle => {
+        if (obstacle.x > -50) return obstacle;
+        score++;
+        level -= Math.ceil((score/level));
+    });
+
+    // generate obstacles
+    if (staggerFrames > level) {
+        obstacles.push(new Obstacle(obstacleImg, 8));
+        staggerFrames = 0;
+        if (level < 40) level = 70;
+    }
+    staggerFrames++;
+
+    ctx.fillText(`Score: ${score}`, 20, 40);
+    
+    if (!gameOver) requestAnimationFrame(animate);
+}
+
+
 // detect arrow key pressed by player and perform relative task
 window.addEventListener("keydown", (ev) => {
     if (ev.key === "ArrowUp") {
