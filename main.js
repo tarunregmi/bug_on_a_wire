@@ -7,3 +7,7 @@ const cnvHeight = cnv.height = cnvWidth/cnvAspectRatio;                         
 const wires = [192, 254, 316];                                                          // array that contains x-coordinate of every wire
 const collideErr = 10;                                                                  // collision error threshold
 const gameSpeed = 2;
+
+// global ctx settings
+ctx.font = "22px serif";
+ctx.fillStyle = "#444";
