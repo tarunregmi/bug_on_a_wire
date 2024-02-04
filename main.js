@@ -16,3 +16,10 @@ ctx.fillStyle = "#444";
 const backgroundImg = new Image(); backgroundImg.src = "./assets/background.png";
 const obstacleImg = new Image(); obstacleImg.src = "./assets/obstacle_36.56x40.png";
 const bugImg = new Image(); bugImg.src = "./assets/bug_51.4x40.png";
+
+// Some DOM elements used to manipulate and control the game
+const infoSection = document.getElementById("info");
+const startButton = document.getElementById("start");
+const restartButton = document.getElementById("restart");
+const scoreboard = document.getElementById("scoreboard");
+const messageBox = document.querySelector(".message");
