@@ -23,3 +23,63 @@ const startButton = document.getElementById("start");
 const restartButton = document.getElementById("restart");
 const scoreboard = document.getElementById("scoreboard");
 const messageBox = document.querySelector(".message");
+
+
+
+// blueprint of game background
+class Background {
+    constructor(img) {
+        this.img = img;
+        this.x1 = 0;
+        this.x2 = cnvWidth;
+    }
+    
+    draw() {
+        ctx.drawImage(this.img, this.x1, 0, cnvWidth, cnvHeight);
+        ctx.drawImage(this.img, this.x2, 0, cnvWidth, cnvHeight);
+        this.x1 -= gameSpeed;
+        this.x2 -= gameSpeed;
+
+        if (this.x1 <= -cnvWidth) this.x1 = cnvWidth;
+        else if (this.x2 <= -cnvWidth) this.x2 = cnvWidth;
+    }
+}
+
+
+// blueprint of bugs in the game
+class Bug {
+    constructor(img) {
+        this.x = 10;                                                                    // initial horizonal position of bug
+        this.img = img;                                                                 // actual image sprite
+        this.frame = 0;                                                                 // varible to make animated bug
+        this.width = this.img.width / 15;                                               // width of single frame
+        this.height = this.img.height;                                                  // height of single frame
+    }
+
+    draw(y) {
+        ctx.drawImage(this.img, this.frame*this.width, 0, this.width, this.height, this.x, y-this.height, this.width, this.height);
+        this.frame++;
+        if (this.frame >= 15) this.frame = 0;                                           // reset frame number when it is more than actual frame number
+    }
+}
+
+
+// blueprint of obstacles in the game
+class Obstacle {
+    constructor (img, dv) {
+        this.x = cnvWidth;
+        this.y = wires[Math.floor(Math.random()*wires.length)];
+        this.speed = Math.floor(gameSpeed + Math.random()*dv);
+        this.img = img;
+        this.frame = 0;
+        this.width = this.img.width / 18;
+        this.height = this.img.height;
+    }
+
+    draw() {
+        ctx.drawImage(this.img, this.frame*this.width, 0, this.width, this.height, this.x, this.y-this.height, this.width, this.height);
+        this.frame++;
+        if (this.frame >= 18) this.frame = 0;
+        this.x -= this.speed;
+    }
+}
