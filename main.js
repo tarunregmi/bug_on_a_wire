@@ -11,3 +11,8 @@ const gameSpeed = 2;
 // global ctx settings
 ctx.font = "22px serif";
 ctx.fillStyle = "#444";
+
+// Images that are used in the game
+const backgroundImg = new Image(); backgroundImg.src = "./assets/background.png";
+const obstacleImg = new Image(); obstacleImg.src = "./assets/obstacle_36.56x40.png";
+const bugImg = new Image(); bugImg.src = "./assets/bug_51.4x40.png";
