@@ -170,6 +170,15 @@ function animate() {
 }
 
 
+// setup game when everything is loaded
+window.addEventListener("load", () => {
+    document.getElementById("game").insertAdjacentElement("beforeend", cnv);
+    startButton.addEventListener("click", startGame, {once: true});
+    restartButton.addEventListener("click", restartGame);
+    if (window.innerWidth < cnvWidth) alert(`Your device width (${window.innerWidth}px) is less than the game needs (${cnvWidth}px), so some part of this game is out of window.\n\nPlease zoom out and play.`)
+});
+
+
 // detect arrow key pressed by player and perform relative task
 window.addEventListener("keydown", (ev) => {
     if (ev.key === "ArrowUp") {
