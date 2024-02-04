@@ -96,6 +96,41 @@ let score = 0;
 let level = 100;
 
 
+function startGame() {
+    console.log("st");
+    infoSection.classList.add("transparent");
+    startButton.setAttribute("hidden", "");
+    restartButton.setAttribute("hidden", "");
+    animate();
+}
+
+function restartGame() {
+    if (gameOver) {
+        background = new Background(backgroundImg);
+        bug = new Bug(bugImg);
+        bugPosition = 1;
+        gameOver = false;
+        obstacles.length = 0;
+        staggerFrames = 0;
+        score = 0;
+        level = 100;
+        startGame();
+    }
+}
+
+function afterGameOver() {
+    if (localStorage.getItem("highestScore") < score) localStorage.setItem("highestScore", score);
+    messageBox.innerHTML = `Game Over!!!<br>The bug successfully avoided ${score} obstacles.`;
+    document.getElementById("yourScore").textContent = score;
+    document.getElementById("highestScore").textContent = Number(localStorage.getItem("highestScore"));
+    infoSection.classList.remove("transparent");
+    scoreboard.removeAttribute("hidden");
+    startButton.setAttribute("hidden", "");
+    restartButton.removeAttribute("disabled");
+    restartButton.removeAttribute("hidden");
+}
+
+
 // detect arrow key pressed by player and perform relative task
 window.addEventListener("keydown", (ev) => {
     if (ev.key === "ArrowUp") {
