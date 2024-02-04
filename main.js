@@ -83,3 +83,14 @@ class Obstacle {
         this.x -= this.speed;
     }
 }
+
+
+// Some variables that are used to hold the game's dynamic state and data
+let background = new Background(backgroundImg);
+let bug = new Bug(bugImg);
+let bugPosition = 1;
+let gameOver = false;
+let obstacles = [];
+let staggerFrames = 0;
+let score = 0;
+let level = 100;
