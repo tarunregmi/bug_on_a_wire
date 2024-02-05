@@ -97,7 +97,6 @@ let level = 100;
 
 
 function startGame() {
-    console.log("st");
     infoSection.classList.add("transparent");
     startButton.setAttribute("hidden", "");
     restartButton.setAttribute("hidden", "");
