@@ -172,7 +172,7 @@ function animate() {
 
 // setup game when everything is loaded
 window.addEventListener("load", () => {
-    // last time change to handel err
+    // reset all state variables
     background = new Background(backgroundImg);bug = new Bug(bugImg);bugPosition = 1;gameOver = false;obstacles = [];staggerFrames = 0;score = 0;level = 100;
 
     document.getElementById("game").insertAdjacentElement("beforeend", cnv);
